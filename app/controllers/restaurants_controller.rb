@@ -7,6 +7,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @review = Review.new
   end
 
   def new
@@ -28,12 +29,6 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurants.update(restaurant_params)
-  end
-
-  def destroy
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
-    redirect_to restaurants_path
   end
 
   private

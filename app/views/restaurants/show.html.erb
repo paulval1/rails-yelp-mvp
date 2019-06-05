@@ -1,6 +1,27 @@
-<h1>Restaurants</h1>
+<!-- <h1>Restaurants</h1>
 <%=  @restaurant.name%>
 <%= @restaurant.address %>
 <%= @restaurant.category %>
-
+ -->
 <%= link_to 'Back', restaurants_path %>
+
+<h1><%= @restaurant.name %></h1>
+
+<p>Address: <%= @restaurant.address %></p>
+<p>Phone: <%= @restaurant.phone_number %></p>
+<p>Category: <%= @restaurant.category %></p>
+
+<hr>
+
+<h2>Reviews</h2>
+<% @restaurant.reviews.each do |review| %>
+  <p>Rating: <%= review.rating  %> Stars  <%= review.content %></p>
+<% end %>
+
+<hr>
+      <%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <%= link_to "See all restaurants", restaurants_path %>
